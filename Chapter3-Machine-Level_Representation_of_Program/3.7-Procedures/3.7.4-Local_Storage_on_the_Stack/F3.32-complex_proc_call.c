@@ -28,7 +28,7 @@ void proc(long a1, long *a1p,
 long call_proc(){
     /** Set up arguments to proc
      * subq $32, %rsp   - Allocate 32-byte stack frame 
-     * @NOTE: 32-byte的分配很有意思，local var 会按照自身的size计算，而传递给proc的arg-7,arg-8直接分8bytes(不考虑参数值的size)
+     * @note: 32-byte的分配很有意思，local var 会按照自身的size计算，而传递给proc的arg-7,arg-8直接分8bytes(不考虑参数值的size)
      * 故上图， 四个局部变量占用4bytes(16-32),两个args占用4bytes(0-8)
      */
     long x1 = 1;    // movq $1, 24(%rsp) - Store 1 in &x1
