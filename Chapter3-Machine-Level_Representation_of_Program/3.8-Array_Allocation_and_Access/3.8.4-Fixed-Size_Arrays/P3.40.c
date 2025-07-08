@@ -29,8 +29,8 @@ void fix_set_diag_opt(fix_matrix A, int val) {
     long iEnd = N * (N + 1);
     do {
         Abase[i] = val;
-        i += N + 1;
-    } while (i < N);
+        i += (N + 1);
+    } while (i != iEnd);
 }
 
 void test_array_pointer(fix_matrix A){
