@@ -1,0 +1,2 @@
+- [ ] Debugger的工作原理
+- [ ] 远程调试: gdb + gdbserver | lldb/lldb-server(Scode中的LLDB)(http://lldb.llvm.org/use/map.html)
