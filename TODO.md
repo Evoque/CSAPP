@@ -1,2 +1,3 @@
 - [ ] Debugger的工作原理
 - [ ] 远程调试: gdb + gdbserver | lldb/lldb-server(Scode中的LLDB)(http://lldb.llvm.org/use/map.html)
+- [ ] 生成一个类中函数间的调用关系、变量的引用关系？推广到整个module、package、工程。 
