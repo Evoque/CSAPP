@@ -5,8 +5,8 @@
 /******** Practice Problem 11.1 ********/ 
 
 /** 
-注意需要使用`ntohl`和`htonl`
-*/
+ *注意需要使用`ntohl`和`htonl`
+ */
 void pp_11_1(){
     /**
     1. Dotted-decimal address -> Hex address
@@ -44,10 +44,32 @@ void pp_11_1(){
 
 }
 
-// Practice Problem 11.2
+#define MAXBUF   8192
+/**
+ * Practice Problem 11.2
+ * Write a program hex2dd.c that converts its 16-bit hex argument to a 16-bit network byte order and prints the result. 
+ * For example
+ * > ./hex2dd 0x400
+ * > 1024
+ */
+void hex2dd(u_int16_t hex16){
+    uint16_t result = htons(hex16);
+    // printf("result: %x\n", result);
 
+    // network byte order
+    struct in_addr inaddr;
+    char buf[INET_ADDRSTRLEN];
 
-int main(){
-    pp_11_1();
+    if (inet_ntop(AF_INET, &hex16, buf, MAXBUF)) {
+        printf("result: %s \n", buf);
+    }
+}
+
+int main(int argc, char **argv){
+    // pp_11_1();
+
+    // u_int16_t addr;
+    // sscanf(argv[1], "%x", &addr);
+    hex2dd(0x400);
     return 0;
 }
