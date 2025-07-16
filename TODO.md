@@ -2,3 +2,4 @@
 - [ ] 远程调试: gdb + gdbserver | lldb/lldb-server(Scode中的LLDB)(http://lldb.llvm.org/use/map.html)
 - [ ] 生成一个类中函数间的调用关系、变量的引用关系？推广到整个module、package、工程。 
 - [ ] 搞一个「从0开始写Web服务器」from scratch
+- [ ] 数据库连接（数据库连接池）的原理，数据库连接是什么通信？
