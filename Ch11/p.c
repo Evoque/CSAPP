@@ -1,7 +1,5 @@
 
 #include <arpa/inet.h>
-#include <cstdint>
-#include <stdint.h>
 #include <stdio.h>
 
 /******** Practice Problem 11.1 ********/
@@ -62,27 +60,41 @@ void hex2dd(uint16_t hex16) {
   }
 }
 
+/**
+ * Write a program dd2hex.c that converts its 16-bit network byte order to a 16-bit hex number 
+ * and prints the result
+
+ * + network byte order -> hex number (host byte order)
+ * - `ntohs`:      an unsigned 16-bit integer (network byte order) -> host byte order
+ * - `inet_ntop`:  a binary IP address (network byte order) -> dotted-decimal string representation
+ */
+// void hex2dd(uint16_t arg_in) {
+
+//     // h16是host byte order, 转换为 network byte order 
+//     // uint16_t n16 = htons(h16);
+//     // // network byte order to host byte order
+//     // uint16_t h16 = ntohs(n16);
+//     // printf("n16: %d", h16);
+//     // // hex number to ip
+//     // inet_pton(int, const char *, void *)
+
+//     struct in_addr inaddr; /* Address in network byte order */
+//     int rc = inet_pton(AF_INET, arg_in, &inaddr)
+
+// }
+
 int main(int argc, char **argv) {
   // pp_11_1();
 
   // u_int16_t addr;
   // sscanf(argv[1], "%x", &addr);
-  hex2dd(0x400);
+  // hex2dd(0x400);
 
+  printf("参数数量: %d", argc);
   struct in_addr inaddr; /* Address in network byte order */
-  uint16_t addr = 0x400;         /* Address in host byte order */
-  char buf[MAXBUF];      /* Buffer for dotted-decimal string */
+  int rc = inet_pton(AF_INET, argv[1], &inaddr);
 
-//   if (argc != 2) {
-//     fprintf(stderr, "usage: %s <hex number>\n", argv[0]);
-//     return 0;
-//   }
-//   sscanf(argv[1], "%x", &addr);
-  inaddr.s_addr = htons(addr);
-
-  if (!inet_ntop(AF_INET, &inaddr, buf, MAXBUF))
-    printf("Error");
-  printf("an: %s \n", buf);
+  printf("-> 0x%x\n", ntohs(inaddr.s_addr));
 
   return 0;
 }
