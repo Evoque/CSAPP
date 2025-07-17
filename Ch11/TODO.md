@@ -1,1 +1,2 @@
 - [ ] getaddrinfo -> struct addrinfo **result: 指向`struct addrinfo`指针的指针；
+- [ ] 理解bit bit mask
