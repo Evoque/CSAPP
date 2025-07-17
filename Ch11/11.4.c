@@ -35,5 +35,8 @@ int main(int argc, char **argv) {
     freeaddrinfo(listp);
     
 
+    struct addrinfo *listp_f;
+    rc = getaddrinfo(argv[1], NULL, &hints, &listp_f);
+
     exit(0);
 }
