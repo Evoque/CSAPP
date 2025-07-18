@@ -1,23 +1,43 @@
 
-
 #include "csapp.h"
-#include <stdint.h>
-#include <stdio.h>
+
+int open_clientfd1(char *hostname, char *port) {
+    int clientfd;
+    struct addrinfo hints, *listp, *p;
+    
+    /* Get a list of potential server addresses */
+    memset(&hints, 0, sizeof(struct addrinfo));
+    hints.ai_socktype = SOCK_STREAM; /* Open a connection */
+    hints.ai_flags = AI_NUMERICSERV; /* ... using a numeric port arg */
+    hints.ai_flags |= AI_ADDRCONFIG; /* Recommended for connections */
+    Getaddrinfo(hostname, port, &hints, &listp);
+
+    /* Walk the list for one that we can successfully connect to */
+    for (p = listp; p; p = p->ai_next) {
+        /* Create a socket descriptor */
+        if ((clientfd = socket(p->ai_family, p->ai_socktype, p->ai_protocol))<0) 
+            continue; /* Socket failed, try the next */
+
+        /* Connect to the server */
+        if (connect(clientfd, p->ai_addr, p->ai_addrlen) != -1) 
+            break; /* Success */
+
+        Close(clientfd); /* Connect failed, try another */
+    }
+
+    /* Clean up */
+    Freeaddrinfo(listp);
+    
+    if (!p) { /* All connects failed */
+        return -1;
+    }
+    /* The last connect succeed */
+    return  clientfd;
+
+}
+
 
 int main(){
-
-    char * ip_str = "128.2.194.242";
-    uint32_t ip_str_int;
-
-    int ip_str_to_int = inet_pton(AF_INET, ip_str, &ip_str_int);
-    // 此处证明， 按照ip_str进行转换，得到的int是与ip_int相反的
-    printf("ip string to number: ip-%s ; num-0x%08x . result-%d \n", ip_str, ip_str_int, ip_str_to_int);
-
-
-    uint32_t ip_int = htonl(0x8002c2f2);
-    char ip_int_result[INET_ADDRSTRLEN];
-    const char *ip_int_to_str = inet_ntop(AF_INET, &ip_int, ip_int_result, INET_ADDRSTRLEN);
-    printf("ip number to number: num=0x%08x; ip=%s. result-%s \n", ip_int, ip_int_result, ip_int_to_str);
 
     return 0;
 }
