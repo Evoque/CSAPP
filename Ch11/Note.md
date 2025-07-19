@@ -45,3 +45,16 @@ const char *inet_ntop(AF_INET, const void *src, char *dst,socklen_t size);
 ```
 
 
+### CGI
+1. How does the client pass any program arguments to the server?
+2. How does the server pass these arguments to the child process that it creates?
+3. How does the server pass other information to the child that it might need to generate the content?
+##### 4. Where does the child send its output?
+- `dup2` function to redirect standard output to the connected descriptor that is associated with the client.
+- Anything that the CGI program writes to standard output goes directly to the client.
+
+#### QA
+1. vs WSGI
+2. vs ASGI，WebSocket/HTTP2，如FastAPI
+3. vs FastCGI（进程复用优化）
+4. vs 现代协议

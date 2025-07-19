@@ -2,3 +2,6 @@
 - [ ] echo例子中用了MAXLINE作为server每次读取的长度，如果内容超长了，怎么办？
 - [ ] 理解bit bit mask
 - [ ] stdin, stdout, stderr: 是进程独立的还是进程共享的？
+- [ ] HTTP如何升级，如1.0 -> 1.1 -> 2.0, proxy chain 如何升级？
+- [ ] 使用MAXLINE & MAXBUF: 如果内容超过这个长度该怎么办？
+- [ ] 读的时候（Rio_readlineb）使用&rio， 写的时候直接写fd（Rio_writen(connfd, buf, n)）？
