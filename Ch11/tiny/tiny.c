@@ -3,10 +3,6 @@
  *         GET method to serve static and dynamic content.
  */
 #include "csapp.h"
-#include <cstdio>
-#include <cstring>
-#include <stdio.h>
-#include <string.h>
 
 void clienterror(int fd, char *cause, char *errnum, char *shortmsg,char *longmsg)
 {

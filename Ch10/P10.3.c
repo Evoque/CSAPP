@@ -8,11 +8,14 @@
  */
 
 #include "csapp.h"
+#include <stdio.h>
 
 int main()
 {
   int fd;
   char c;
+
+  stdin;
 
   fd = Open("foobar.txt", O_RDONLY, 0);
   if (Fork() == 0) {
