@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     if (tmp != NULL)
     {
       Rio_writen(clientfd, buf, strlen(buf));
-      size_t n = Rio_readlineb(&rio, buf, MAXLINE);
+      // size_t n = Rio_readlineb(&rio, buf, MAXLINE);
       Fputs(buf, stdout);
     }
   }
