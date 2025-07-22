@@ -1,7 +1,3 @@
 {
-    "editor.tabSize": 2,
-    "files.associations": {
-        "queue": "c",
-        "stack": "c"
-    }
+    "editor.tabSize": 2
 }
