@@ -3,3 +3,4 @@
 - [ ] 生成一个类中函数间的调用关系、变量的引用关系？推广到整个module、package、工程。 
 - [ ] 搞一个「从0开始写Web服务器」from scratch
 - [ ] 自己用C写的tiny，想实现Server/Client，既input又output，好像出现了不能正常显示的问题。（10.11提到的限制）。
+- [ ] Debugger工作原理，如何命中断点，如何远程Debugger等等

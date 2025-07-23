@@ -1,6 +1,7 @@
 - [x] getaddrinfo -> struct addrinfo **result: 指向`struct addrinfo`指针的指针；
-> 双指针入参，是为了在函数内部修改指针的地址
-- [ ] echo例子中用了MAXLINE作为server每次读取的长度，如果内容超长了，怎么办？
+> 双指针入参，是为了在函数内部修改指针的地址（解构赋值）
+- [x] echo例子中用了MAXLINE作为server每次读取的长度，如果内容超长了，怎么办？
+> 自己的demo里，内容超长可能会被截断或者其他异常，在HTTP中，因为有Content-Length, Content-Length仅包括Reponse Body的长度。
 - [ ] 理解bit bit mask
 - [ ] stdin, stdout, stderr: 是进程独立的还是进程共享的？
 - [ ] HTTP如何升级，如1.0 -> 1.1 -> 2.0, proxy chain 如何升级？

@@ -11,7 +11,7 @@
         "-g",
         "${file}",
         "${fileDirname}/csapp.c",
-        "${fileDirname}/echo.c",
+        // "${fileDirname}/echo.c",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}",
         "-lpthread"

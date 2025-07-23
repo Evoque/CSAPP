@@ -8,10 +8,10 @@
       "name": "Debug Server",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/Ch11/echo/server",
+      "program": "${fileDirname}/test_dup",
       "args": ["9999"],
       "preLaunchTask": "Build Server",
-      "cwd": "${workspaceFolder}/Ch11/echo",
+      "cwd": "${fileDirname}",
       "MIMode": "lldb"
     }
   ]
