@@ -1,7 +1,7 @@
 /**
  * Concurrent Programming with Processes
  */
-#include "csapp.h"
+#include "../code/csapp.h"
 #include "echo.c"
 
 void sigchld_handler(int sig)
@@ -23,12 +23,17 @@ int main(int argc, char **argv)
     exit(0);
   }
 
+  char client_hostname[MAXLINE], client_port[MAXLINE];
+
   Signal(SIGCHLD, sigchld_handler);
   listenfd = Open_listenfd(argv[1]);
   while (1)
   {
     clientlen = sizeof(struct sockaddr_storage);
     connfd = Accept(listenfd, (SA *)&clientaddr, &clientlen);
+    Getnameinfo((SA *)&clientaddr, clientlen, client_hostname, MAXLINE,
+                client_port, MAXLINE, 0);
+    printf("Server Accepted: (%s, %s)-fd[%d]\n", client_hostname, client_port, connfd);
     if (Fork() == 0)
     {
       Close(listenfd); /* Child closes its listening socket */

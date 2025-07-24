@@ -771,9 +771,11 @@ ssize_t rio_readnb(rio_t *rp, void *usrbuf, size_t n) {
 ssize_t rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen) {
   int n, rc;
   char c, *bufp = usrbuf;
-
+ 
   for (n = 1; n < maxlen; n++) {
-    if ((rc = rio_read(rp, &c, 1)) == 1) {
+    rc = rio_read(rp, &c, 1); 
+
+    if (rc == 1) {
       *bufp++ = c;
       if (c == '\n') {
         n++;
@@ -803,9 +805,10 @@ ssize_t Rio_readn(int fd, void *ptr, size_t nbytes) {
   return n;
 }
 
-void Rio_writen(int fd, void *usrbuf, size_t n) {
+ssize_t Rio_writen(int fd, void *usrbuf, size_t n) {
   if (rio_writen(fd, usrbuf, n) != n)
     unix_error("Rio_writen error");
+  return n;
 }
 
 void Rio_readinitb(rio_t *rp, int fd) { 

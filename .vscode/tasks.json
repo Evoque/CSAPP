@@ -8,13 +8,12 @@
       "type": "shell",
       "command": "/usr/bin/clang",
       "args": [
-        "-g",
+        // "-g", /* 调试时再打开 */
         "${file}",
-        "${fileDirname}/csapp.c",
+        "${workspaceFolder}/code/csapp.c",
         // "${fileDirname}/echo.c",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}",
-        "-lpthread"
+        "${fileDirname}/${fileBasenameNoExtension}"
       ],
       "group": {
         "kind": "build",

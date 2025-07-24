@@ -19,7 +19,7 @@ void echo(int connfd)
     n = Rio_readlineb(&rio, buf, MAXLINE);
     if (n != 0)
     {
-      printf("server received: [%dbytes]->%s", (int)n, buf);
+      printf("server received from [%d]: [%dbytes]->%s", connfd, (int)n, buf);
       // Rio_writen(connfd, buf, n);
       // Custom Response
       Rio_writen(connfd, resp, strlen(resp));
