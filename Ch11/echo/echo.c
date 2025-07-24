@@ -19,15 +19,15 @@ void echo(int connfd)
     n = Rio_readlineb(&rio, buf, MAXLINE);
     if (n != 0)
     {
-      // printf("server received: [%dbytes]->%s", (int)n, buf);
+      printf("server received: [%dbytes]->%s", (int)n, buf);
       // Rio_writen(connfd, buf, n);
       // Custom Response
-      // Rio_writen(connfd, resp, strlen(resp));
-      Fputs(buf, stdout);
+      Rio_writen(connfd, resp, strlen(resp));
+      // Fputs(buf, stdout);
     }
     else
     {
-      printf("=========== server received: 0!! 结束. ===========\n");
+      printf("=========== client断开链接(0)!! Over! ===========\n");
       break;
     }
   }
