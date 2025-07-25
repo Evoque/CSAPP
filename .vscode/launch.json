@@ -8,7 +8,7 @@
       "name": "Debug Server",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${fileDirname}/test_dup",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
       "args": ["9999"],
       "preLaunchTask": "Build Server",
       "cwd": "${fileDirname}",

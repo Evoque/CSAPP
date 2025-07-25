@@ -8,7 +8,7 @@
       "type": "shell",
       "command": "/usr/bin/clang",
       "args": [
-        // "-g", /* 调试时再打开 */
+        "-g", /* 调试时再打开 */
         "${file}",
         "${workspaceFolder}/code/csapp.c",
         // "${fileDirname}/echo.c",
