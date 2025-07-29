@@ -4,3 +4,4 @@
 - [ ] 搞一个「从0开始写Web服务器」from scratch
 - [ ] 自己用C写的tiny，想实现Server/Client，既input又output，好像出现了不能正常显示的问题。（10.11提到的限制）。
 - [ ] Debugger工作原理，如何命中断点，如何远程Debugger等等
+- [ ] I/O Multiplexing时，单次传输的内容过多（传输时间较长），该怎么办？

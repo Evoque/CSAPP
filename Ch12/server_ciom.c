@@ -141,6 +141,11 @@ void check_clients(pool *p)
     if ((connfd > 0) && (FD_ISSET(connfd, &p->ready_set)))
     {
       p->nready--;
+      /**
+       * @todo:
+       * vulnerable to a malicious client that sends only a partial text line(no \n or EOF) and then halts.
+       * modifying it is a nontrivial task.
+       */
       if ((n = Rio_readlineb(&rio, buf, MAXLINE)) != 0)
       {
         byte_cnt += n;
@@ -196,7 +201,9 @@ int main(int argc, char **argv)
   }
 }
 
-// Aside Event-driven Web servers
-// Despite the disadvantages outlined in Section 12.2.2, modern high-performance servers such as Node.js,
-// nginx, and Tornado use event-driven programming based on I/O multiplexing, mainly because of the
-// significant performance advantage compared to processes and threads.
+/**
+ * Aside: Event-driven Web servers
+ * Despite the disadvantages outlined in Section 12.2.2, modern high-performance servers such as Node.js,
+ * nginx, and Tornado use event-driven programming based on I/O multiplexing, mainly because of the
+ * significant performance advantage compared to processes and threads.
+ */
