@@ -3,7 +3,7 @@ CFLAGS = -g -O1 -Wall
 LDLIBS = -lpthread
 
 # 目标文件
-TARGETS = client server server_cp server_ciom server_ct pt
+TARGETS = client server server_cp server_ciom server_ct pt badcnt sharing
 
 # 默认目标
 all: $(TARGETS)
