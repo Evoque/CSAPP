@@ -1,23 +1,26 @@
 /* WARNING: This code is buggy! */
+// #include "../code/csapp.h"
 #include "../code/csapp.h"
 
 void *thread(void *vargp); /* Thread routine prototype */
 
 /* Global shared variable */
 volatile long cnt = 0; /* Counter */
+sem_t *mutex;           /* Semaphore that protects counter */
 
 int main(int argc, char **argv)
 {
-  long niters;
-  pthread_t tid1, tid2;
-
   /* Check input argument */
   if (argc != 2)
   {
     printf("usage: %s <niters>\n", argv[0]);
     exit(0);
   }
+
+  long niters;
+  pthread_t tid1, tid2;
   niters = atoi(argv[1]);
+  Sem_init1(&mutex, 0, 1);
 
   /* Create threads and wait for them to finish */
   Pthread_create(&tid1, NULL, thread, &niters);
@@ -39,7 +42,11 @@ void *thread(void *vargp)
   long i, niters = *((long *)vargp);
 
   for (i = 0; i < niters; i++)
+  {
+    P(mutex);
     cnt++;
+    V(mutex);
+  }
 
   return NULL;
 }

@@ -20,7 +20,7 @@
         "isDefault": true
       },
       "options": {
-        "cwd": "${workspaceFolder}/Ch11/code"
+        "cwd": "${fileDirname}"
       },
       "problemMatcher": ["$gcc"],
       "presentation": {
