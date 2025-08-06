@@ -701,7 +701,7 @@ void Sem_init(sem_t *sem, int pshared, unsigned int value)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
   if (sem_init(sem, pshared, value) < 0)
-    unix_error("Sem_init error ???");
+    unix_error("Sem_init error");
 #pragma clang diagnostic pop
 }
 

@@ -13,9 +13,9 @@ void sbuf_init(sbuf_t *sp, int n)
   sp->buf = Calloc(n, sizeof(int));
   sp->n = n;                  /* Buffer holds max of n items */
   sp->front = sp->rear = 0;   /* Empty buffer iff front == rear */
-  Sem_init(&sp->mutex, 0, 1); /* Binary semaphore for locking */
-  Sem_init(&sp->slots, 0, n); /* Initially, buf has n empty slots */
-  Sem_init(&sp->items, 0, 0); /* Initially, buf has zero data items */
+  Sem_init1(&sp->mutex, 0, 1); /* Binary semaphore for locking */
+  Sem_init1(&sp->slots, 0, n); /* Initially, buf has n empty slots */
+  Sem_init1(&sp->items, 0, 0); /* Initially, buf has zero data items */
 }
 /* $end sbuf_init */
 
@@ -31,11 +31,11 @@ void sbuf_deinit(sbuf_t *sp)
 /* $begin sbuf_insert */
 void sbuf_insert(sbuf_t *sp, int item)
 {
-  P(&sp->slots);                          /* Wait for available slot */
-  P(&sp->mutex);                          /* Lock the buffer */
+  P(sp->slots);                          /* Wait for available slot */
+  P(sp->mutex);                          /* Lock the buffer       */
   sp->buf[(++sp->rear) % (sp->n)] = item; /* Insert the item */
-  V(&sp->mutex);                          /* Unlock the buffer */
-  V(&sp->items);                          /* Announce available item */
+  V(sp->mutex);                          /* Unlock the buffer */
+  V(sp->items);                          /* Announce available item */
 }
 /* $end sbuf_insert */
 
@@ -44,11 +44,11 @@ void sbuf_insert(sbuf_t *sp, int item)
 int sbuf_remove(sbuf_t *sp)
 {
   int item;
-  P(&sp->items);                           /* Wait for available item */
-  P(&sp->mutex);                           /* Lock the buffer */
+  P(sp->items);                           /* Wait for available item */
+  P(sp->mutex);                           /* Lock the buffer */
   item = sp->buf[(++sp->front) % (sp->n)]; /* Remove the item */
-  V(&sp->mutex);                           /* Unlock the buffer */
-  V(&sp->slots);                           /* Announce available slot */
+  V(sp->mutex);                           /* Unlock the buffer */
+  V(sp->slots);                           /* Announce available slot */
   return item;
 }
 /* $end sbuf_remove */

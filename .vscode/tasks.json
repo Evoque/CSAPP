@@ -11,6 +11,7 @@
         "-g", /* 调试时再打开 */
         "${file}",
         "${workspaceFolder}/code/csapp.c",
+        "${fileDirname}/sbuf.c",
         // "${fileDirname}/echo.c",
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}"
